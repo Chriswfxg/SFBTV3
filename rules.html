@@ -29,6 +29,8 @@
         li {
             padding: 5px 0;
             border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
         }
         input[type="text"] {
             width: calc(100% - 22px);
@@ -49,6 +51,15 @@
         button:hover {
             background-color: #0056b3;
         }
+        .edit-button, .delete-button {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: #007bff;
+        }
+        .delete-button {
+            color: red;
+        }
         .nav-link {
             margin-top: 10px;
             text-align: center;
@@ -59,10 +70,10 @@
     <div class="rules-container">
         <h3>Current Rules</h3>
         <ul id="rules-list"></ul>
-        <h4>Add New Rule</h4>
+        <h4>Add/Edit Rule</h4>
         <input type="text" id="keyword-input" placeholder="Keyword">
         <input type="text" id="response-input" placeholder="Response">
-        <button onclick="addRule()">Add Rule</button>
+        <button onclick="addOrEditRule()">Add/Edit Rule</button>
         <div class="nav-link">
             <a href="index.html">Back to Chat</a>
         </div>
