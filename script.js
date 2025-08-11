@@ -1,5 +1,4 @@
-// Load rules from localStorage (if any)
-// Load rules from localStorage (if any)
+// --- Rules (unchanged) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
@@ -41,10 +40,7 @@ You could also find details regarding competitive differentiatiors <a href="http
   </ol>
   <p>If you need help reviewing or editing an existing order, feel free to ask.</p>
 I could also help you perform this task. Click <a href="https://my405746.s4hana.cloud.sap/ui?_wfx_=22edd632-f7ef-4694-a823-90ad737ca160&_wfx_stage=production&_wfx_state=null#Shell-home" target="_blank" rel="noopener noreferrer">here</a> to do it on the application
- 
- 
  `,
-  
   "Can you explain the overview of create sales order process": `
     <h3>Create Sales Order Process – SAP ECC</h3>
     <p>In Whatfix, the <strong>Sales Order Creation</strong> process in <strong>SAP ECC</strong> is initiated when a customer places a confirmed purchase request...</p>
@@ -69,83 +65,111 @@ I could also help you perform this task. Click <a href="https://my405746.s4hana.
   `
 };
 
-// Function to send a message and get a response from the bot
+// --- Typing helpers (new) ---
+// Build the DOM structure from HTML, but empty all text nodes.
+// Return {root, segments} where segments is an ordered list of {node, tokens[]}
+function buildStreamDOM(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+
+  const segments = [];
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const original = node.nodeValue || "";
+      // Split into tokens that preserve spaces
+      const tokens = original.split(/(\s+)/).filter(t => t.length > 0);
+      node.nodeValue = ""; // clear for streaming
+      segments.push({ node, tokens });
+    } else {
+      // Recurse
+      for (const child of Array.from(node.childNodes)) walk(child);
+    }
+  }
+  walk(tmp);
+  return { root: tmp, segments };
+}
+
+// Stream tokens across all text nodes word-by-word
+function streamInto(container, html, opts = {}) {
+  const interval = opts.interval ?? 40; // ms between tokens
+  // If no HTML tags, just stream as plain text
+  const isHTML = /<\/?[a-z][\s\S]*>/i.test(html);
+
+  if (!isHTML) {
+    const tokens = html.split(/(\s+)/).filter(Boolean);
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i >= tokens.length) return clearInterval(timer);
+      container.textContent += tokens[i++];
+      container.parentElement?.parentElement?.scrollTo?.({ top: container.parentElement.parentElement.scrollHeight, behavior: 'auto' });
+    }, interval);
+    return;
+  }
+
+  // HTML case: build structure, then stream text nodes
+  const { root, segments } = buildStreamDOM(html);
+  // Append the full structure (empty text nodes) first
+  while (root.firstChild) container.appendChild(root.firstChild);
+
+  let segIdx = 0, tokIdx = 0;
+  const timer = setInterval(() => {
+    if (segIdx >= segments.length) return clearInterval(timer);
+    const seg = segments[segIdx];
+    if (tokIdx < seg.tokens.length) {
+      seg.node.nodeValue += seg.tokens[tokIdx++];
+    } else {
+      segIdx++; tokIdx = 0;
+    }
+    // keep scroll pinned to bottom during typing
+    const messageBox = document.getElementById('message-box');
+    messageBox.scrollTop = messageBox.scrollHeight;
+  }, interval);
+}
+
+// --- Main send flow (unchanged delay & behavior, new streaming render) ---
 function sendMessage() {
-    const userInput = document.getElementById("user-input").value;
-    const messageBox = document.getElementById("message-box");
+  const userInput = document.getElementById("user-input").value;
+  const messageBox = document.getElementById("message-box");
 
-    // Clear the input field after sending the message
-    document.getElementById("user-input").value = "";
+  // Clear the input field after sending the message
+  document.getElementById("user-input").value = "";
 
-    // Add user message to the chat
-    const userMessageWrapper = document.createElement('div');
-    userMessageWrapper.classList.add('message-wrapper');
-    const userMessage = document.createElement('div');
-    userMessage.classList.add('user-message');
-    userMessage.textContent = userInput;
-    userMessageWrapper.appendChild(userMessage);
-    messageBox.appendChild(userMessageWrapper);
+  // Add user message to the chat
+  const userMessageWrapper = document.createElement('div');
+  userMessageWrapper.classList.add('message-wrapper');
+  const userMessage = document.createElement('div');
+  userMessage.classList.add('user-message');
+  userMessage.textContent = userInput;
+  userMessageWrapper.appendChild(userMessage);
+  messageBox.appendChild(userMessageWrapper);
 
-    // Scroll to the bottom
+  // Scroll to the bottom
+  messageBox.scrollTop = messageBox.scrollHeight;
+
+  // Delay the bot's response by 3 seconds (unchanged)
+  setTimeout(() => {
+    let response = "Sorry, I don't understand that.";
+
+    // Check if there's a matching rule (unchanged)
+    for (let keyword in rules) {
+      if (userInput.includes(keyword)) {
+        response = rules[keyword];
+        break;
+      }
+    }
+
+    // Add bot response container first (empty), then stream into it
+    const botMessageWrapper = document.createElement('div');
+    botMessageWrapper.classList.add('message-wrapper', 'bot-message-wrapper');
+
+    const botMessage = document.createElement('div');
+    botMessage.classList.add('bot-message');
+    botMessageWrapper.appendChild(botMessage);
+    messageBox.appendChild(botMessageWrapper);
     messageBox.scrollTop = messageBox.scrollHeight;
 
-    // Delay the bot's response by 3 seconds
-    setTimeout(() => {
-        let response = "Sorry, I don't understand that.";
-
-        // Check if there's a matching rule
-        for (let keyword in rules) {
-            if (userInput.includes(keyword)) {
-                response = rules[keyword];
-                break;
-            }
-        }
-
-        // Add bot response to the chat
-        const botMessageWrapper = document.createElement('div');
-        botMessageWrapper.classList.add('message-wrapper', 'bot-message-wrapper');
-        const botMessage = document.createElement('div');
-        botMessage.classList.add('bot-message');
-        botMessage.innerHTML = response;
-        botMessageWrapper.appendChild(botMessage);
-        messageBox.appendChild(botMessageWrapper);
-
-        // Scroll to the bottom
-        messageBox.scrollTop = messageBox.scrollHeight;
-    }, 3000);
+    // Stream word-by-word into the bot message (keeps HTML structure)
+    // Adjust interval if you want faster/slower typing.
+    streamInto(botMessage, response, { interval: 35 });
+  }, 3000);
 }
-
-// Add bot response to the chat
-const botMessageWrapper = document.createElement('div');
-botMessageWrapper.classList.add('message-wrapper', 'bot-message-wrapper');
-const botMessage = document.createElement('div');
-botMessage.classList.add('bot-message');
-botMessage.innerHTML = response;
-botMessageWrapper.appendChild(botMessage);
-messageBox.appendChild(botMessageWrapper);
-
-/* === Add "Sources" pill if the response has links === */
-const hasLinks = botMessage.querySelectorAll('a').length > 0;
-if (hasLinks) {
-  const pill = document.createElement('button');
-  pill.className = 'pill';
-  pill.type = 'button';
-  pill.innerHTML = `
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:6px;">
-      <path d="M4 7.5C4 6.12 8.03 5 12 5s8 1.12 8 2.5-4.03 2.5-8 2.5-8-1.12-8-2.5Z" stroke="#444" stroke-width="1.6"/>
-      <path d="M4 12c0 1.38 4.03 2.5 8 2.5s8-1.12 8-2.5" stroke="#444" stroke-width="1.6"/>
-      <path d="M4 16.5C4 17.88 8.03 19 12 19s8-1.12 8-2.5" stroke="#444" stroke-width="1.6"/>
-    </svg>
-    Sources
-  `;
-  // Optional: open the first source in a new tab on click (no other logic changed)
-  pill.addEventListener('click', () => {
-    const firstLink = botMessage.querySelector('a');
-    if (firstLink) window.open(firstLink.href, '_blank', 'noopener');
-  });
-  botMessage.appendChild(pill);
-}
-/* === end pill block === */
-
-// Scroll to the bottom
-messageBox.scrollTop = messageBox.scrollHeight;
