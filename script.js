@@ -1,4 +1,4 @@
-// --- Rules (unchanged) ---
+// --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
@@ -40,6 +40,8 @@ You could also find details regarding competitive differentiatiors <a href="http
   </ol>
   <p>If you need help reviewing or editing an existing order, feel free to ask.</p>
 I could also help you perform this task. Click <a href="https://my405746.s4hana.cloud.sap/ui?_wfx_=22edd632-f7ef-4694-a823-90ad737ca160&_wfx_stage=production&_wfx_state=null#Shell-home" target="_blank" rel="noopener noreferrer">here</a> to do it on the application
+ 
+ 
  `,
   "Can you explain the overview of create sales order process": `
     <h3>Create Sales Order Process – SAP ECC</h3>
@@ -65,76 +67,64 @@ I could also help you perform this task. Click <a href="https://my405746.s4hana.
   `
 };
 
-// --- Typing helpers (new) ---
-// Build the DOM structure from HTML, but empty all text nodes.
-// Return {root, segments} where segments is an ordered list of {node, tokens[]}
-function buildStreamDOM(html) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
+// ---- Streaming that reveals HTML tags AND text progressively ----
+function streamMarkup(container, html, opts = {}) {
+  const tokenDelay = opts.tokenDelay ?? 60; // delay between HTML tokens (tags or text blocks)
+  const wordDelay  = opts.wordDelay  ?? 35; // delay between words within a text block
+  const messageBox = document.getElementById('message-box');
 
-  const segments = [];
-  function walk(node) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const original = node.nodeValue || "";
-      // Split into tokens that preserve spaces
-      const tokens = original.split(/(\s+)/).filter(t => t.length > 0);
-      node.nodeValue = ""; // clear for streaming
-      segments.push({ node, tokens });
-    } else {
-      // Recurse
-      for (const child of Array.from(node.childNodes)) walk(child);
-    }
-  }
-  walk(tmp);
-  return { root: tmp, segments };
-}
+  // Split into HTML tokens: tags vs text chunks
+  const tokens = [];
+  const re = /(<[^>]+>|[^<]+)/g;
+  let m;
+  while ((m = re.exec(html)) !== null) tokens.push(m[0]);
 
-// Stream tokens across all text nodes word-by-word
-function streamInto(container, html, opts = {}) {
-  const interval = opts.interval ?? 40; // ms between tokens
-  // If no HTML tags, just stream as plain text
-  const isHTML = /<\/?[a-z][\s\S]*>/i.test(html);
+  let buffer = "";
+  let i = 0;
 
-  if (!isHTML) {
-    const tokens = html.split(/(\s+)/).filter(Boolean);
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i >= tokens.length) return clearInterval(timer);
-      container.textContent += tokens[i++];
-      container.parentElement?.parentElement?.scrollTo?.({ top: container.parentElement.parentElement.scrollHeight, behavior: 'auto' });
-    }, interval);
-    return;
-  }
-
-  // HTML case: build structure, then stream text nodes
-  const { root, segments } = buildStreamDOM(html);
-  // Append the full structure (empty text nodes) first
-  while (root.firstChild) container.appendChild(root.firstChild);
-
-  let segIdx = 0, tokIdx = 0;
-  const timer = setInterval(() => {
-    if (segIdx >= segments.length) return clearInterval(timer);
-    const seg = segments[segIdx];
-    if (tokIdx < seg.tokens.length) {
-      seg.node.nodeValue += seg.tokens[tokIdx++];
-    } else {
-      segIdx++; tokIdx = 0;
-    }
-    // keep scroll pinned to bottom during typing
-    const messageBox = document.getElementById('message-box');
+  function keepScroll() {
     messageBox.scrollTop = messageBox.scrollHeight;
-  }, interval);
+  }
+
+  function step() {
+    if (i >= tokens.length) return; // done
+    const t = tokens[i++];
+
+    if (t.startsWith("<")) {
+      // Tag token: append whole tag, update DOM once
+      buffer += t;
+      container.innerHTML = buffer;
+      keepScroll();
+      setTimeout(step, tokenDelay);
+    } else {
+      // Text token: stream word-by-word
+      const parts = t.split(/(\s+)/).filter(Boolean);
+      let j = 0;
+      (function streamText() {
+        if (j >= parts.length) {
+          setTimeout(step, tokenDelay);
+          return;
+        }
+        buffer += parts[j++];
+        container.innerHTML = buffer;
+        keepScroll();
+        setTimeout(streamText, wordDelay);
+      })();
+    }
+  }
+
+  step();
 }
 
-// --- Main send flow (unchanged delay & behavior, new streaming render) ---
+// ---- Main send flow (same behavior, same 3s delay) ----
 function sendMessage() {
   const userInput = document.getElementById("user-input").value;
   const messageBox = document.getElementById("message-box");
 
-  // Clear the input field after sending the message
+  // Clear input
   document.getElementById("user-input").value = "";
 
-  // Add user message to the chat
+  // User bubble
   const userMessageWrapper = document.createElement('div');
   userMessageWrapper.classList.add('message-wrapper');
   const userMessage = document.createElement('div');
@@ -142,15 +132,13 @@ function sendMessage() {
   userMessage.textContent = userInput;
   userMessageWrapper.appendChild(userMessage);
   messageBox.appendChild(userMessageWrapper);
-
-  // Scroll to the bottom
   messageBox.scrollTop = messageBox.scrollHeight;
 
-  // Delay the bot's response by 3 seconds (unchanged)
+  // 3s delay (unchanged)
   setTimeout(() => {
     let response = "Sorry, I don't understand that.";
 
-    // Check if there's a matching rule (unchanged)
+    // Rule match (unchanged)
     for (let keyword in rules) {
       if (userInput.includes(keyword)) {
         response = rules[keyword];
@@ -158,18 +146,46 @@ function sendMessage() {
       }
     }
 
-    // Add bot response container first (empty), then stream into it
+    // Bot container
     const botMessageWrapper = document.createElement('div');
     botMessageWrapper.classList.add('message-wrapper', 'bot-message-wrapper');
-
     const botMessage = document.createElement('div');
     botMessage.classList.add('bot-message');
     botMessageWrapper.appendChild(botMessage);
     messageBox.appendChild(botMessageWrapper);
     messageBox.scrollTop = messageBox.scrollHeight;
 
-    // Stream word-by-word into the bot message (keeps HTML structure)
-    // Adjust interval if you want faster/slower typing.
-    streamInto(botMessage, response, { interval: 35 });
+    // Stream full markup (tags + text)
+    streamMarkup(botMessage, response, {
+      tokenDelay: 60,  // tag-to-tag pacing
+      wordDelay: 35    // word pacing
+    });
   }, 3000);
+}
+function addBotMessage(html) {
+  const box = document.getElementById('message-box');
+
+  const wrap = document.createElement('div');
+  wrap.className = 'message-wrapper bot-message-wrapper';
+
+  const card = document.createElement('div');
+  card.className = 'bot-message';
+
+  // Your answer content + the Sources pill
+  const sourcesPill = `
+    <button class="pill" onclick="openSources()"
+            aria-label="View sources" title="View sources">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:6px;">
+        <path d="M4 7.5C4 6.12 8.03 5 12 5s8 1.12 8 2.5-4.03 2.5-8 2.5-8-1.12-8-2.5Z" stroke="#444" stroke-width="1.6"/>
+        <path d="M4 12c0 1.38 4.03 2.5 8 2.5s8-1.12 8-2.5" stroke="#444" stroke-width="1.6"/>
+        <path d="M4 16.5C4 17.88 8.03 19 12 19s8-1.12 8-2.5" stroke="#444" stroke-width="1.6"/>
+      </svg>
+      Sources
+    </button>
+  `;
+
+  // IMPORTANT: innerHTML (not textContent)
+  card.innerHTML = `${html}${sourcesPill}`;
+  wrap.appendChild(card);
+  box.appendChild(wrap);
 }
