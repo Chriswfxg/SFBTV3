@@ -114,3 +114,38 @@ function sendMessage() {
         messageBox.scrollTop = messageBox.scrollHeight;
     }, 3000);
 }
+
+// Add bot response to the chat
+const botMessageWrapper = document.createElement('div');
+botMessageWrapper.classList.add('message-wrapper', 'bot-message-wrapper');
+const botMessage = document.createElement('div');
+botMessage.classList.add('bot-message');
+botMessage.innerHTML = response;
+botMessageWrapper.appendChild(botMessage);
+messageBox.appendChild(botMessageWrapper);
+
+/* === Add "Sources" pill if the response has links === */
+const hasLinks = botMessage.querySelectorAll('a').length > 0;
+if (hasLinks) {
+  const pill = document.createElement('button');
+  pill.className = 'pill';
+  pill.type = 'button';
+  pill.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:6px;">
+      <path d="M4 7.5C4 6.12 8.03 5 12 5s8 1.12 8 2.5-4.03 2.5-8 2.5-8-1.12-8-2.5Z" stroke="#444" stroke-width="1.6"/>
+      <path d="M4 12c0 1.38 4.03 2.5 8 2.5s8-1.12 8-2.5" stroke="#444" stroke-width="1.6"/>
+      <path d="M4 16.5C4 17.88 8.03 19 12 19s8-1.12 8-2.5" stroke="#444" stroke-width="1.6"/>
+    </svg>
+    Sources
+  `;
+  // Optional: open the first source in a new tab on click (no other logic changed)
+  pill.addEventListener('click', () => {
+    const firstLink = botMessage.querySelector('a');
+    if (firstLink) window.open(firstLink.href, '_blank', 'noopener');
+  });
+  botMessage.appendChild(pill);
+}
+/* === end pill block === */
+
+// Scroll to the bottom
+messageBox.scrollTop = messageBox.scrollHeight;
