@@ -1,129 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Chat Interface</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            width: 100vw;
-            background-color: #D3D3D3;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: #333;
-            position: relative;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Full-Screen Chat Interface</title>
+  <style>
+    :root{
+      --bg:#f7f7f7;
+      --card:#ffffff;
+      --ink:#2b2b2b;
+      --line:#e8e8ea;
+      --peach:#fde6df;     /* user prompt bubble */
+      --brand:#f27720;     /* thin top strip + send btn */
+      --radius:18px;
+      --shadow:0 6px 22px rgba(0,0,0,.08);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      height:100vh; width:100vw; color:var(--ink); background:var(--bg);
+      display:flex; flex-direction:column; position:relative;
+    }
 
-        /* Watermark Styling */
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            color: rgba(0, 0, 0, 0.05);  /* Light transparent black */
-            z-index: 0;
-            pointer-events: none;  /* To ensure it doesn't interfere with clicks */
-        }
+    /* thin brand strip like the reference */
+    .brand-strip{height:8px;background:var(--brand);}
 
-        .chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            padding: 20px;
-            z-index: 1;  /* Ensure it's above the watermark */
-        }
+    /* watermark */
+    .watermark{
+      position:absolute; inset:0; display:grid; place-items:center;
+      font-size:80px; font-weight:800; color:rgba(0,0,0,.035);
+      pointer-events:none; z-index:0;
+    }
 
-        .message-wrapper {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 10px;
-        }
+    /* chat area */
+    .chat-container{
+      flex:1; display:flex; flex-direction:column; gap:12px;
+      overflow-y:auto; padding:24px 16px 140px; /* room for input bar */
+      z-index:1; max-width:840px; margin:0 auto; width:100%;
+    }
+    .message-wrapper{display:flex; width:100%;}
+    /* by default align left (like screenshot’s prompt bubble) */
+    .message-wrapper {justify-content:flex-start;}
+    /* for bot-message-wrapper keep your original hook but align right if you used it */
+    .bot-message-wrapper{justify-content:flex-end;}
 
-        .user-message {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 18px;
-            max-width: 70%;
-            border-radius: 15px;
-            align-self: flex-start;
-            text-align: left;
-        }
+    /* user bubble → peach chip */
+    .user-message{
+      background:var(--peach);
+      border:1px solid #f6cfc5;
+      color:#3b3b3b;
+      padding:14px 16px;
+      border-radius:14px;
+      max-width:min(720px,96%);
+      line-height:1.45;
+    }
 
-        .bot-message-wrapper {
-            justify-content: flex-end;
-        }
+    /* bot card → white elevated card */
+    .bot-message{
+      background:var(--card);
+      color:#2f3137;
+      padding:18px;
+      max-width:min(780px,96%);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+      line-height:1.55;
+    }
 
-        .bot-message {
-            background-color: #ffffff;
-            color: #333;
-            padding: 12px 18px;
-            max-width: 70%;
-            border-radius: 15px;
-            text-align: left;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Shadow effect for bot messages */
-        }
+    /* optional “pill” style (if your bot text includes a button/span with class .pill) */
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line); padding:8px 12px; border-radius:999px;
+      background:#fbfbfb; font-size:14px; color:#333; margin-top:12px;
+    }
 
-        .input-container {
-            display: flex;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 20px;
-            border-top: 1px solid #ccc;
-            z-index: 2;  /* Higher than watermark */
-        }
-
-        .user-input {
-            flex: 1;
-            padding: 15px;
-            border-radius: 30px;
-            border: 1px solid #ccc;
-            outline: none;
-            background-color: #f9f9f9;
-            color: #333;
-            font-size: 18px;
-        }
-
-        .send-button {
-            background-color: #007bff;
-            border: none;
-            color: white;
-            padding: 15px;
-            border-radius: 50%;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 22px;
-        }
-
-        .send-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    /* input dock */
+    .input-container{
+      position:fixed; bottom:0; left:0; right:0; z-index:2;
+      background:linear-gradient(180deg, rgba(247,247,247,0) 0%, var(--bg) 30%, var(--bg) 100%);
+      padding:14px 16px 18px; border-top:0;
+      display:flex; justify-content:center;
+    }
+    .input-inner{
+      max-width:840px; width:100%;
+      background:var(--card); border:1px solid var(--line);
+      border-radius:16px; box-shadow:var(--shadow);
+      display:flex; align-items:center; gap:10px; padding:10px 10px 10px 14px;
+    }
+    .user-input{
+      flex:1; padding:10px 2px; border:none; outline:none;
+      background:transparent; color:#222; font-size:16px;
+    }
+    .send-button{
+      background:var(--brand); border:none; color:#fff;
+      width:44px; height:44px; border-radius:50%; margin-left:6px;
+      cursor:pointer; font-size:20px; display:grid; place-items:center;
+    }
+    .send-button:hover{filter:brightness(.95)}
+  </style>
 </head>
 <body>
-    <!-- Watermark -->
-    <div class="watermark">Adopt AI</div>
+  <div class="brand-strip"></div>
 
-    <!-- Chat Container -->
-    <div class="chat-container" id="message-box"></div>
+  <!-- Watermark -->
+  <div class="watermark">WFX Seek</div>
 
-    <!-- Input Container -->
-    <div class="input-container">
-        <input type="text" class="user-input" id="user-input" placeholder="Type a message...">
-        <button class="send-button" onclick="sendMessage()">&#x27A4;</button>
+  <!-- Chat Container (IDs/classes unchanged) -->
+  <div class="chat-container" id="message-box"></div>
+
+  <!-- Input Dock (IDs/hooks unchanged) -->
+  <div class="input-container">
+    <div class="input-inner">
+      <input type="text" class="user-input" id="user-input" placeholder="Search across your organisation" />
+      <button class="send-button" onclick="sendMessage()" aria-label="Send">&#x27A4;</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Your existing script keeps working -->
+  <script src="script.js"></script>
 </body>
 </html>
