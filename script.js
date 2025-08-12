@@ -3,7 +3,13 @@ let rules = {
   "hello": "Hi! How can I help you today?",
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
   "bye": "Goodbye! Have a great day.",
-  "":`<ul>
+  "increase my deal value":`<h2>Key Bundling Recommendations</h2>
+<ul>
+  <li>External Fuel Tank / Sub-Base Fuel Cell (for extended runtime)</li>
+  <li>Auto Transfer Switch (ATS) – to automate switching to generator power in outage scenarios</li>
+  <li>Trailer or Mounting Kit – if portable deployment is needed</li>
+</ul>`,
+  "discovery questions":`<ul>
   <li>What are the primary application areas for the Advanced Sensors Platform in NovaTech’s operations?</li>
   <li>What specific performance metrics or KPIs does NovaTech expect to improve with this platform?</li>
   <li>Are there any regulatory or compliance standards that the sensors must meet?</li>
