@@ -3,6 +3,66 @@ let rules = {
   "hello": "Hi! How can I help you today?",
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
   "bye": "Goodbye! Have a great day.",
+  "financial services segment":`<section>
+  <h4>Case Study 1 — Midvale Bank (Retail Banking)</h4>
+  <p><strong>Context:</strong> 1,050 employees; moving relationship managers and branch ops to Salesforce.</p>
+  <p><strong>Challenges:</strong> High turnover in branches, inconsistent data entry, long ramp time (10–12 weeks).</p>
+  <p><strong>DAP Approach:</strong></p>
+  <ul>
+    <li>Role-based guided tours for RMs vs. tellers</li>
+    <li>Data-validation Smart Tips on lead, KYC, and opportunity fields</li>
+    <li>Task checklists for the first 30 days; self-help search for SOPs in-app</li>
+  </ul>
+  <p><strong>Rollout:</strong> 6-week pilot (3 branches) → phased scale.</p>
+  <p><strong>Results (90 days post go-live):</strong></p>
+  <ul>
+    <li>Ramp time reduced 10–12 → 6–7 weeks (~40% faster)</li>
+    <li>Data-entry errors on opportunities down 38%</li>
+    <li>“How do I…?” support tickets down 45%</li>
+    <li>Salesforce adoption (weekly active) up +22 pts (from 54% → 76%)</li>
+  </ul>
+</section>
+
+<section>
+  <h4>Case Study 2 — Aegis General Insurance (Commercial Lines)</h4>
+  <p><strong>Context:</strong> 980 employees; migrating producers &amp; underwriters to Microsoft Dynamics 365 CRM.</p>
+  <p><strong>Challenges:</strong> Complex quote/bind workflow, compliance steps often skipped, underwriter rework.</p>
+  <p><strong>DAP Approach:</strong></p>
+  <ul>
+    <li>Conditional walkthroughs that adapt by product line (Property, Marine, Liability)</li>
+    <li>Embedded policy checklists with hard-stop callouts on missing documents</li>
+    <li>In-app micro-quizzes for compliance refreshers; nudges for renewal pipeline hygiene</li>
+  </ul>
+  <p><strong>Rollout:</strong> 90-day enablement sprint alongside UAT; content owned by ops enablement.</p>
+  <p><strong>Results (first 2 quarters):</strong></p>
+  <ul>
+    <li>Quote-to-bind cycle time improved 27%</li>
+    <li>Compliance step completion +31 pts (from 61% → 92%)</li>
+    <li>Rework due to incomplete submissions down 34%</li>
+    <li>New-hire producer productivity at 60 days up +35%</li>
+  </ul>
+</section>
+
+<section>
+  <h4>Case Study 3 — Meridian Wealth Partners (Wealth/Asset Management)</h4>
+  <p><strong>Context:</strong> 1,120 employees; advisors on Salesforce Financial Services Cloud.</p>
+  <p><strong>Challenges:</strong> Low use of client-life events, inconsistent logging of interactions, slow onboarding of lateral hires.</p>
+  <p><strong>DAP Approach:</strong></p>
+  <ul>
+    <li>Moment-of-need tooltips on client profile &amp; life-event triggers</li>
+    <li>Playable simulations for first-meeting prep &amp; call-logging best practices</li>
+    <li>Segmented announcements for feature releases; analytics to target under-adopting desks</li>
+  </ul>
+  <p><strong>Rollout:</strong> Advisor council co-designed content; monthly iteration using DAP analytics.</p>
+  <p><strong>Results (6 months):</strong></p>
+  <ul>
+    <li>Advisor adoption of life-event workflows +44%</li>
+    <li>Logged interactions per active advisor +28%</li>
+    <li>New-logo pipeline value per advisor +19%</li>
+    <li>Onboarding time for lateral hires down 42%</li>
+  </ul>
+</section>
+`,
   "increase my deal value":`<h2>Key Bundling Recommendations</h2>
 <ul>
   <li>External Fuel Tank / Sub-Base Fuel Cell (for extended runtime)</li>
@@ -191,6 +251,22 @@ function sendMessage() {
     });
   }, 3000);
 }
+const inputEl = document.getElementById('user-input');
+const sendBtn  = document.querySelector('.send-button');
+
+function updateSendState() {
+  sendBtn.disabled = inputEl.value.trim().length === 0;
+}
+updateSendState();
+inputEl.addEventListener('input', updateSendState);
+
+// Optional: block Enter-to-send when empty
+inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey && !inputEl.value.trim()) {
+    e.preventDefault();
+  }
+});
+
 function addBotMessage(html) {
   const box = document.getElementById('message-box');
 
