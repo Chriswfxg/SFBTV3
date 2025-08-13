@@ -97,6 +97,26 @@
       width:44px; height:44px; border-radius:50%; margin-left:6px;
       cursor:pointer; font-size:20px; display:grid; place-items:center;
     }
+    .user-input{
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #222;
+  font-size: 16px;
+
+  /* auto-grow behaviour */
+  resize: none;            /* user can’t drag to resize (optional) */
+  overflow-y: auto;        /* scroll only if we hit the max height */
+  min-height: 44px;        /* matches your send button size */
+  max-height: 160px;       /* cap growth (tweak as you like) */
+  line-height: 1.35;
+  padding: 10px 2px;
+}
+
+/* make the feed keep clear space equal to the dock height */
+.chat-container { padding-bottom: var(--dock-h, 140px); }
+
     .send-button:hover{filter:brightness(.95)}
   </style>
 </head>
@@ -112,7 +132,9 @@
   <!-- Input Dock (IDs/hooks unchanged) -->
   <div class="input-container">
     <div class="input-inner">
-      <input type="text" class="user-input" id="user-input" placeholder="Search across your organisation" />
+      <textarea class="user-input" id="user-input" rows="1"
+  placeholder="Search across your organisation"></textarea>
+
       <button class="send-button" onclick="sendMessage()" aria-label="Send">&#x27A4;</button>
     </div>
   </div>
