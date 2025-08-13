@@ -121,6 +121,27 @@ function streamMarkup(container, html, opts = {}) {
 
   step();
 }
+function autosizeInput() {
+  const ta = document.getElementById('user-input');
+  if (!ta) return;
+  ta.style.height = 'auto';                         // reset
+  ta.style.height = Math.min(ta.scrollHeight, 160) + 'px'; // grow up to max
+
+  // update the space reserved for the dock so content never hides behind it
+  const dock = document.querySelector('.input-container');
+  if (dock) {
+    document.documentElement.style.setProperty('--dock-h', dock.offsetHeight + 'px');
+  }
+}
+
+// bind once
+(function initAutosize(){
+  const ta = document.getElementById('user-input');
+  if (!ta) return;
+  autosizeInput();                    // set initial height
+  ta.addEventListener('input', autosizeInput);
+  window.addEventListener('resize', autosizeInput);
+})();
 
 // ---- Main send flow (same behavior, same 3s delay) ----
 function sendMessage() {
@@ -129,6 +150,8 @@ function sendMessage() {
 
   // Clear input
   document.getElementById("user-input").value = "";
+  autosizeInput();  // collapses back to one line 
+
 
   // User bubble
   const userMessageWrapper = document.createElement('div');
