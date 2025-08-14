@@ -3,63 +3,54 @@ let rules = {
   "hello": "Hi! How can I help you today?",
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
   "bye": "Goodbye! Have a great day.",
-  "financial services segment":`<section>
-  <h4>Case Study 1 — Midvale Bank (Retail Banking)</h4>
-  <p><strong>Context:</strong> 1,050 employees; moving relationship managers and branch ops to Salesforce.</p>
-  <p><strong>Challenges:</strong> High turnover in branches, inconsistent data entry, long ramp time (10–12 weeks).</p>
-  <p><strong>DAP Approach:</strong></p>
+  "case studies and references for generators":`<section>
+  <h4>Case Study 1 — Alpha Manufacturing (Automotive Components)</h4>
+  <p><strong>Context:</strong> 850 employees; expanding assembly line with high power demand.</p>
+  <p><strong>Challenges:</strong> Frequent grid outages causing production delays; rising downtime costs.</p>
+  <p><strong>Procurement Approach:</strong></p>
   <ul>
-    <li>Role-based guided tours for RMs vs. tellers</li>
-    <li>Data-validation Smart Tips on lead, KYC, and opportunity fields</li>
-    <li>Task checklists for the first 30 days; self-help search for SOPs in-app</li>
+    <li>Competitive bidding with total cost of ownership analysis</li>
+    <li>Selected 500 kVA diesel generator with soundproof enclosure</li>
+    <li>Negotiated 5-year AMC and priority service SLA</li>
   </ul>
-  <p><strong>Rollout:</strong> 6-week pilot (3 branches) → phased scale.</p>
-  <p><strong>Results (90 days post go-live):</strong></p>
+  <p><strong>Results:</strong></p>
   <ul>
-    <li>Ramp time reduced 10–12 → 6–7 weeks (~40% faster)</li>
-    <li>Data-entry errors on opportunities down 38%</li>
-    <li>“How do I…?” support tickets down 45%</li>
-    <li>Salesforce adoption (weekly active) up +22 pts (from 54% → 76%)</li>
+    <li>Downtime reduced by 92%</li>
+    <li>Annual maintenance costs 15% below previous backup system</li>
   </ul>
 </section>
 
 <section>
-  <h4>Case Study 2 — Aegis General Insurance (Commercial Lines)</h4>
-  <p><strong>Context:</strong> 980 employees; migrating producers &amp; underwriters to Microsoft Dynamics 365 CRM.</p>
-  <p><strong>Challenges:</strong> Complex quote/bind workflow, compliance steps often skipped, underwriter rework.</p>
-  <p><strong>DAP Approach:</strong></p>
+  <h4>Case Study 2 — Orion Metals (Steel Processing)</h4>
+  <p><strong>Context:</strong> 1,200 employees; 24×7 rolling mill operations.</p>
+  <p><strong>Challenges:</strong> Voltage fluctuations damaging sensitive control equipment; energy supply gaps during peak demand.</p>
+  <p><strong>Procurement Approach:</strong></p>
   <ul>
-    <li>Conditional walkthroughs that adapt by product line (Property, Marine, Liability)</li>
-    <li>Embedded policy checklists with hard-stop callouts on missing documents</li>
-    <li>In-app micro-quizzes for compliance refreshers; nudges for renewal pipeline hygiene</li>
+    <li>Market survey for dual-fuel (diesel/natural gas) generators</li>
+    <li>Lifecycle cost modeling including fuel efficiency</li>
+    <li>Contract terms included operator training & remote monitoring</li>
   </ul>
-  <p><strong>Rollout:</strong> 90-day enablement sprint alongside UAT; content owned by ops enablement.</p>
-  <p><strong>Results (first 2 quarters):</strong></p>
+  <p><strong>Results:</strong></p>
   <ul>
-    <li>Quote-to-bind cycle time improved 27%</li>
-    <li>Compliance step completion +31 pts (from 61% → 92%)</li>
-    <li>Rework due to incomplete submissions down 34%</li>
-    <li>New-hire producer productivity at 60 days up +35%</li>
+    <li>Energy cost per MWh lowered by 11%</li>
+    <li>Equipment failure incidents down 40% in first year</li>
   </ul>
 </section>
 
 <section>
-  <h4>Case Study 3 — Meridian Wealth Partners (Wealth/Asset Management)</h4>
-  <p><strong>Context:</strong> 1,120 employees; advisors on Salesforce Financial Services Cloud.</p>
-  <p><strong>Challenges:</strong> Low use of client-life events, inconsistent logging of interactions, slow onboarding of lateral hires.</p>
-  <p><strong>DAP Approach:</strong></p>
+  <h4>Case Study 3 — Zenith Plastics (Injection Moulding)</h4>
+  <p><strong>Context:</strong> 620 employees; adding two high-capacity moulding machines.</p>
+  <p><strong>Challenges:</strong> Existing generator undersized; delays in grid upgrade approval.</p>
+  <p><strong>Procurement Approach:</strong></p>
   <ul>
-    <li>Moment-of-need tooltips on client profile &amp; life-event triggers</li>
-    <li>Playable simulations for first-meeting prep &amp; call-logging best practices</li>
-    <li>Segmented announcements for feature releases; analytics to target under-adopting desks</li>
+    <li>RFQ issued to three OEMs; focus on lead time & service coverage</li>
+    <li>Chose 750 kVA unit with load management controls</li>
+    <li>Staggered payment terms to align with production ramp-up</li>
   </ul>
-  <p><strong>Rollout:</strong> Advisor council co-designed content; monthly iteration using DAP analytics.</p>
-  <p><strong>Results (6 months):</strong></p>
+  <p><strong>Results:</strong></p>
   <ul>
-    <li>Advisor adoption of life-event workflows +44%</li>
-    <li>Logged interactions per active advisor +28%</li>
-    <li>New-logo pipeline value per advisor +19%</li>
-    <li>Onboarding time for lateral hires down 42%</li>
+    <li>New machines commissioned 2 months ahead of schedule</li>
+    <li>Production capacity up 25% without outages</li>
   </ul>
 </section>
 `,
