@@ -61,16 +61,20 @@ let rules = {
   <li>Trailer or Mounting Kit – if portable deployment is needed</li>
 </ul>`,
   "discovery questions":`<ul>
-  <li>What are the primary application areas for the Advanced Sensors Platform in NovaTech’s operations?</li>
-  <li>What specific performance metrics or KPIs does NovaTech expect to improve with this platform?</li>
-  <li>Are there any regulatory or compliance standards that the sensors must meet?</li>
-  <li>What integration requirements exist with NovaTech’s current systems or infrastructure?</li>
-  <li>What are the environmental conditions in which the sensors will operate?</li>
+  <li>What are the primary application areas for GenPro’s industrial generators within Northwind Manufacturing’s operations (e.g., backup for production lines, continuous power for critical facilities)?</li>
+  <li>Which performance metrics or KPIs does Northwind expect to improve with a GenPro generator upgrade (e.g., reduced downtime costs, lower maintenance overhead, improved fuel efficiency)?</li>
+  <li>Are there regulatory or compliance standards the generators must meet in their industry (e.g., emissions, noise levels, or local energy regulations)?</li>
+  <li>What integration requirements exist with Northwind’s current infrastructure (such as facility monitoring systems, ATS/transfer switches, or existing diesel fleet)?</li>
+  <li>In what environmental conditions will the generators operate (factory floor, outdoor enclosures, high-dust environments, variable climates)?</li>
 </ul>
-You could also find details regarding competitive differentiatiors <a href="https://v0-klue-com-clone.vercel.app/?_wfx_=07b3aded-fa6b-4880-8d0c-ff5a21b0a8d8&_wfx_stage=production&_wfx_state=null"
+<p>
+You could also find details regarding <strong>competitive differentiators for GenPro vs. ACME and Umbrella</strong> 
+<a href="https://v0-klue-com-clone.vercel.app/?_wfx_=07b3aded-fa6b-4880-8d0c-ff5a21b0a8d8&_wfx_stage=production&_wfx_state=null"
    target="_blank" rel="noopener noreferrer">
   here
-</a>`,
+</a>.
+</p>
+`,
   "hola": "heeeey",
   "What are the pipeline figures for this quarter?": "The total pipeline for this quarter is projected to be $500,000. This includes opportunities across multiple sectors, with $300,000 expected from new customers and $200,000 from existing customers. Would you like more details on the opportunity breakdown or forecasted close dates?",
   "What are the overall pipeline figures?": "The overall pipeline stands at $1.2 million, which includes $800,000 from existing customers and $400,000 from new customer opportunities. The pipeline is spread across various stages, with 60% in early stages and 40% in advanced stages. Would you like to see a more detailed breakdown or the projected close dates for specific deals?",
