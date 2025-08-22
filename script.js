@@ -1,6 +1,16 @@
 // --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
+  "overdue receivables":`<article class="customer-summary" data-customer-id="17100005">
+  <h2>Customer 17100005</h2>
+  <ul>
+    <li>Net Value: <data value="216.00" data-currency="USD">216.00 USD</data></li>
+    <li>Credit Limit: <data value="5.00" data-currency="USD">5.00 USD</data></li>
+    <li>Current Credit Exposure: <data value="20.00" data-currency="USD">20.00 USD</data></li>
+    <li>Total Overdue Amount: <data value="0.00" data-currency="USD">0.00 USD</data></li>
+  </ul>
+  <p>For more details, <a href="https://my405746.s4hana.cloud.sap/ui?_wfx_=0d503c5a-8b65-4569-91c2-c28b1bb9b4e2&_wfx_stage=design&_wfx_state=draft#Shell-home" target="_blank" rel="noopener noreferrer">click here</a> to view overdue receivables.</p>
+</article> `,
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
   "bye": "Goodbye! Have a great day.",
   "case studies and references for generators":`<section>
