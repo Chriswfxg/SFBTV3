@@ -1,8 +1,66 @@
 // --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
+  "more about the rewards":`<article class="compensation-benefits">
+  <h4>Valuable Benefits Included in Your Compensation</h4>
+  <p>Designed to support your financial, personal, and professional well-being.</p>
+
+  <ol>
+    <li>
+      <strong>Comprehensive Health Insurance</strong> – Provides financial security for you and your family during medical emergencies, going beyond basic coverage.
+      <ul>
+        <li>"Family floater" policy covering spouse and children</li>
+        <li>Cashless treatment at a wide network of hospitals</li>
+        <li>Covers daycare procedures without overnight hospitalization</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Cab Allowance</strong> – Helps make your daily commute in Bengaluru safer and more convenient, reducing stress and expenses.
+      <ul>
+        <li>Fixed monthly reimbursement for cab services like Ola/Uber</li>
+        <li>Access to company-arranged transportation, especially for late shifts</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>5% Employer Contribution to Your Savings</strong> – Extra money invested directly into your long-term savings, separate from your in-hand salary.
+      <ul>
+        <li>Typically contributed to Employees' Provident Fund (PF)</li>
+        <li>Grows over time to create a substantial retirement corpus</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Paid Time Off (PTO)</strong> – Crucial for work-life balance, providing paid time to rest, recharge, and handle personal matters.
+      <ul>
+        <li>Privilege Leave (vacations)</li>
+        <li>Casual Leave (personal errands)</li>
+        <li>Sick Leave (illness)</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Learning and Development Opportunities</strong> – Investments in your career growth to help you stay competitive.
+      <ul>
+        <li>Sponsorship for professional certifications</li>
+        <li>Free access to platforms like Coursera</li>
+        <li>Internal workshops for skill enhancement</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Employee Perks and Discounts</strong> – Lifestyle benefits that help you save money and enjoy exclusive advantages.
+      <ul>
+        <li>Corporate discounts on travel, electronics, and more</li>
+        <li>Subsidized gym memberships</li>
+        <li>Meal benefits like food vouchers or cafeteria access</li>
+      </ul>
+    </li>
+  </ol>
+</article>`,
   "overdue receivables":`<article class="customer-summary" data-customer-id="17100005">
-  <h2>Customer 17100005</h2>
+  <h4>Customer 17100005</h4>
   <ul>
     <li>Net Value: <data value="216.00" data-currency="USD">216.00 USD</data></li>
     <li>Credit Limit: <data value="5.00" data-currency="USD">5.00 USD</data></li>
