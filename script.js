@@ -1,6 +1,32 @@
 // --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
+  "might be heading toward burnout":`<article class="workload-summary">
+  <h2>Workload Report</h2>
+
+  <p><strong>Timeframe:</strong> Last 3 weeks</p>
+
+  <h3>Summary</h3>
+  <ol>
+    <li>John has been consistently working longer hours than usual — around 10–15% over his standard weekly hours.</li>
+    <li>
+      Notable spikes:
+      <ul>
+        <li>+8 hours in week 1</li>
+        <li>+12 hours in week 2</li>
+        <li>+14 hours in week 3</li>
+      </ul>
+    </li>
+    <li>This pattern suggests he could be at risk of burnout if the workload continues.</li>
+  </ol>
+
+  <h3>Quick Tip</h3>
+  <ol>
+    <li>Reach out to John to check in on his workload</li>
+    <li>Encourage regular breaks</li>
+    <li>See if any tasks can be redistributed to avoid burnout</li>
+  </ol>
+</article>`,
   "more about the rewards":`<article class="compensation-benefits">
   <h4>Valuable Benefits Included in Your Compensation</h4>
   <p>Designed to support your financial, personal, and professional well-being.</p>
