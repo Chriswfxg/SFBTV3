@@ -8,7 +8,7 @@ let rules = {
 
   <p>Summary</p>
   <ol>
-    <li>John has been consistently working longer hours than usual — around 10–15% over his standard weekly hours.</li>
+    <li>Deepti has been consistently working longer hours than usual — around 10–15% over his standard weekly hours.</li>
     <li>
       Notable spikes:
       <ul>
