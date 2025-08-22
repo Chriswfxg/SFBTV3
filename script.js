@@ -22,7 +22,7 @@ let rules = {
 
   <h3>Quick Tip</h3>
   <ol>
-    <li>Reach out to John to check in on his workload</li>
+    <li>Reach out to Deepti to check in on his workload</li>
     <li>Encourage regular breaks</li>
     <li>See if any tasks can be redistributed to avoid burnout</li>
   </ol>
