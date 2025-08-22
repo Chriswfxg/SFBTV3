@@ -2,11 +2,11 @@
 let rules = {
   "hello": "Hi! How can I help you today?",
   "might be heading toward burnout":`<article class="workload-summary">
-  <h2>Workload Report</h2>
+  <h4>Workload Report</h4>
 
   <p><strong>Timeframe:</strong> Last 3 weeks</p>
 
-  <h3>Summary</h3>
+  <p>Summary</p>
   <ol>
     <li>John has been consistently working longer hours than usual — around 10–15% over his standard weekly hours.</li>
     <li>
