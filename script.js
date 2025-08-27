@@ -339,7 +339,6 @@ function sendMessage() {
       wordDelay: 35    // word pacing
     });
   }, 3000);
-}
 });
 
 function addBotMessage(html) {
