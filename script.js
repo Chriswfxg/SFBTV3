@@ -340,20 +340,6 @@ function sendMessage() {
     });
   }, 3000);
 }
-const inputEl = document.getElementById('user-input');
-const sendBtn  = document.querySelector('.send-button');
-
-function updateSendState() {
-  sendBtn.disabled = inputEl.value.trim().length === 0;
-}
-updateSendState();
-inputEl.addEventListener('input', updateSendState);
-
-// Optional: block Enter-to-send when empty
-inputEl.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.shiftKey && !inputEl.value.trim()) {
-    e.preventDefault();
-  }
 });
 
 function addBotMessage(html) {
