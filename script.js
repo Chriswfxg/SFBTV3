@@ -130,23 +130,6 @@ let rules = {
     <li>Equipment failure incidents down 40% in first year</li>
   </ul>
 </section>
-
-<section>
-  <h4>Case Study 3 — Zenith Plastics (Injection Moulding)</h4>
-  <p><strong>Context:</strong> 620 employees; adding two high-capacity moulding machines.</p>
-  <p><strong>Challenges:</strong> Existing generator undersized; delays in grid upgrade approval.</p>
-  <p><strong>Procurement Approach:</strong></p>
-  <ul>
-    <li>RFQ issued to three OEMs; focus on lead time & service coverage</li>
-    <li>Chose 750 kVA unit with load management controls</li>
-    <li>Staggered payment terms to align with production ramp-up</li>
-  </ul>
-  <p><strong>Results:</strong></p>
-  <ul>
-    <li>New machines commissioned 2 months ahead of schedule</li>
-    <li>Production capacity up 25% without outages</li>
-  </ul>
-</section>
 `,
   "increase my deal value":`<h2>Key Bundling Recommendations</h2>
 <ul>
