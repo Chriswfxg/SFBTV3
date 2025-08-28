@@ -131,7 +131,7 @@ let rules = {
   </ul>
 </section>
 `,
-  "increase my deal value":`<h2>Key Bundling Recommendations</h2>
+  "increase my deal value":`<h4>Key Bundling Recommendations</h4>
 <ul>
   <li>External Fuel Tank / Sub-Base Fuel Cell (for extended runtime)</li>
   <li>Auto Transfer Switch (ATS) – to automate switching to generator power in outage scenarios</li>
