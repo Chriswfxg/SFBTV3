@@ -1,7 +1,7 @@
 // --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
-  "User has entered some Audit details":`You have filled the audit details, some details have dependency on others would you like to fill that field. Click <a href="https://whatfix.com/service/mirror/serve/2b82cadb-e083-4531-8676-7bf8fdbf4c7d/6c6cc60c-70d7-408e-ac43-bf74e292871a/ea1990b8-cbf1-44be-97ce-305e1c6b4b3a">here</a> to fill the details`,
+  "The audit is categorized under Compliance":`The external audit of A+ API Supplies, Inc. focused on training compliance and documentation accuracy. Overall, the site is compliant with GxP requirements, with minor gaps noted in audit trail completeness and timely closure of training assignments. Recommendations have been provided to support continuous improvement.`,
   "might be heading toward burnout":`<article class="workload-summary">
   <h4>Workload Report</h4>
 
