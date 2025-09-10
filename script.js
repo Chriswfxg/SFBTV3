@@ -1,6 +1,21 @@
 // --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
+  "Define the standard working hours within the organization and outline the potential implications when employees":`<p>
+  Standard working hours are defined as 9 hours per day and 45 hours per week. These limits are designed to maintain productivity while supporting employee health and well-being. When employees consistently work beyond these hours, it may lead to fatigue, reduced concentration, and an increased risk of errors in daily tasks. Over time, excessive overtime can also contribute to work–life imbalance, lower employee morale, and decreased long-term engagement, which may ultimately affect both individual performance and organizational outcomes. Shall I share some best practices to help manage overtime effectively?
+</p>
+`,
+  "yes":`<section>
+  <h4>Best Practices to Help Manage Overtime</h4>
+  <ul>
+    <li><strong>Set clear limits</strong> – Define boundaries for daily and weekly hours to avoid overwork.</li>
+    <li><strong>Balance workloads</strong> – Encourage managers to redistribute tasks when employees exceed limits.</li>
+    <li><strong>Promote breaks and recovery</strong> – Regular short breaks and time off help maintain focus and reduce fatigue.</li>
+    <li><strong>Use insights</strong> – Monitor overtime patterns and address the root causes early.</li>
+  </ul>
+  <p>These steps support employee well-being and help sustain productivity in the long run.</p>
+</section>
+`,
   "roles and responsibilities of a Sales Engineer":`<section>
   <h4>Sales Engineer Responsibilities</h4>
   <p>
