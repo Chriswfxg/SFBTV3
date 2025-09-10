@@ -1,6 +1,42 @@
 // --- Rules (unchanged from your code) ---
 let rules = {
   "hello": "Hi! How can I help you today?",
+  "roles and responsibilities of a Sales Engineer":`<section>
+  <h4>Sales Engineer Responsibilities</h4>
+  <p>
+    A Sales Engineer plays a key role in bridging the gap between technical solutions and customer needs. Typical responsibilities include:
+  </p>
+  <ul>
+    <li>
+      <strong>Conducting Technical Product Demonstrations:</strong>
+      Showcasing product features and capabilities to customers in a way that addresses their business challenges.
+    </li>
+    <li>
+      <strong>Understanding Customer Requirements:</strong>
+      Working closely with clients to understand their technical and business needs.
+    </li>
+    <li>
+      <strong>Building Strong Client Relationships:</strong>
+      Acting as a trusted technical advisor throughout the sales cycle.
+    </li>
+    <li>
+      <strong>Collaborating with Sales and Engineering Teams:</strong>
+      Helping translate customer needs into technical solutions and ensuring alignment between product capabilities and client expectations.
+    </li>
+    <li>
+      <strong>Providing Technical Support During Sales Process:</strong>
+      Assisting in creating proposals, answering technical questions, and resolving any product-related concerns.
+    </li>
+    <li>
+      <strong>Staying Updated on Product and Industry Trends:</strong>
+      Continuously learning about product updates, industry developments, and competitive solutions to provide informed guidance.
+    </li>
+  </ul>
+  <p>
+    These responsibilities combine both technical expertise and strong communication skills, ensuring that complex solutions are effectively presented and aligned with customer needs.
+  </p>
+</section>
+`,
   "The audit is categorized under Compliance":`The external audit of A+ API Supplies, Inc. focused on training compliance and documentation accuracy. Overall, the site is compliant with GxP requirements, with minor gaps noted in audit trail completeness and timely closure of training assignments. Recommendations have been provided to support continuous improvement.`,
   "might be heading toward burnout":`<article class="workload-summary">
   <h4>Workload Report</h4>
