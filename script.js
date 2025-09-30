@@ -145,7 +145,7 @@ let rules = {
     <li>Current Credit Exposure: <data value="20.00" data-currency="USD">20.00 USD</data></li>
     <li>Total Overdue Amount: <data value="0.00" data-currency="USD">0.00 USD</data></li>
   </ul>
-  <p>For more details, <a href="https://my405746.s4hana.cloud.sap/ui?_wfx_=0d503c5a-8b65-4569-91c2-c28b1bb9b4e2&_wfx_stage=design&_wfx_state=draft#Shell-home" target="_blank" rel="noopener noreferrer">click here</a> to view overdue receivables.</p>
+  <p>For more details, <a href="https://my405746.s4hana.cloud.sap/ui?_wfx_=b0ad14f5-1ef1-47c3-b1a8-85bdaa3ae8c9&_wfx_stage=production&_wfx_state=null#Shell-home" target="_blank" rel="noopener noreferrer">click here</a> to view overdue receivables.</p>
 </article> `,
   "how are you": "I'm a bot, but I'm doing great! Thanks for asking.",
   "bye": "Goodbye! Have a great day.",
