@@ -5,6 +5,14 @@ let rules = {
   Standard working hours are defined as 9 hours per day and 45 hours per week. These limits are designed to maintain productivity while supporting employee health and well-being. When employees consistently work beyond these hours, it may lead to fatigue, reduced concentration, and an increased risk of errors in daily tasks. Over time, excessive overtime can also contribute to work–life imbalance, lower employee morale, and decreased long-term engagement, which may ultimately affect both individual performance and organizational outcomes. Shall I share some best practices to help manage overtime effectively?
 </p>
 `,
+  "are the best sourcing channels I can use to fill this role faster": `<p>Based on recent hiring performance and available data, here are the top sourcing channels you should prioritize for this role</p>
+<ul>
+    <li><strong>Internal Referrals</strong> Several employees in your network have previously worked with strong candidates who match this job profile. Encourage them to submit referrals to shorten hiring cycles.</li>
+    <li><strong>Alumni Outreach</strong> Access the pre-verified alumni contact lists from last quarter — these profiles showed a 30% faster onboarding success rate.</li>
+    <li><strong>Targeted LinkedIn Pipeline</strong> Launch recommended LinkedIn campaigns aimed at professionals who recently engaged with similar job postings.</li>
+    <li><strong>Campus Pipeline</strong> Focus on universities that delivered top-performing hires last year — including Norwitch university and Richmond university.</li>
+    <li><strong>Campaign Insights</strong> Review results from last month’s talent campaign — it generated 120 qualified leads across three job families, which can be re-engaged for this opening.</li>
+</ul>`,
   "yes":`<section>
   <h4>Best Practices to Help Manage Overtime</h4>
   <ul>
